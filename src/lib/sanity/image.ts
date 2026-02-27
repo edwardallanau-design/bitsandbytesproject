@@ -1,9 +1,9 @@
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
 
 import { sanityClientPublic } from "./clientPublic";
 
-const builder = imageUrlBuilder(sanityClientPublic);
+const builder = createImageUrlBuilder(sanityClientPublic);
 
 /**
  * Helper that returns a Sanity image URL builder pre-configured with the
