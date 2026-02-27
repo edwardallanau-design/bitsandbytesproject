@@ -18,25 +18,25 @@ export function Footer({ settings }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-neutral-200 bg-neutral-50">
+    <footer className="border-t border-neutral-800 bg-neutral-950">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {/* Brand */}
           <div>
             <Link
               href="/"
-              className="text-lg font-semibold text-neutral-900 hover:text-brand-600 transition-colors"
+              className="text-lg font-semibold text-white hover:text-neutral-300 transition-colors"
             >
               {settings?.siteName ?? "Agency"}
             </Link>
             {settings?.tagline && (
-              <p className="mt-2 text-sm text-neutral-500">{settings.tagline}</p>
+              <p className="mt-2 text-sm text-neutral-400">{settings.tagline}</p>
             )}
           </div>
 
           {/* Navigation */}
           <nav aria-label="Footer navigation">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-400">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">
               Navigation
             </p>
             <ul className="space-y-2">
@@ -44,7 +44,7 @@ export function Footer({ settings }: FooterProps) {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors"
+                    className="text-sm text-neutral-300 hover:text-white transition-colors"
                   >
                     {label}
                   </Link>
@@ -56,7 +56,7 @@ export function Footer({ settings }: FooterProps) {
           {/* Social */}
           {settings?.socialLinks && settings.socialLinks.length > 0 && (
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-400">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 Follow us
               </p>
               <ul className="space-y-2">
@@ -66,7 +66,7 @@ export function Footer({ settings }: FooterProps) {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm capitalize text-neutral-600 hover:text-neutral-900 transition-colors"
+                      className="text-sm capitalize text-neutral-300 hover:text-white transition-colors"
                     >
                       {platform}
                     </a>
@@ -77,7 +77,7 @@ export function Footer({ settings }: FooterProps) {
           )}
         </div>
 
-        <div className="mt-8 border-t border-neutral-200 pt-8 text-center text-xs text-neutral-400">
+        <div className="mt-8 border-t border-neutral-800 pt-8 text-center text-xs text-neutral-500">
           © {currentYear} {settings?.siteName ?? "Agency"}. All rights reserved.
         </div>
       </div>
