@@ -10,6 +10,7 @@ const SINGLETON_TYPES = new Set(["siteSettings", "homePage"]);
 export default defineConfig({
   name: "default",
   title: "Agency CMS",
+  basePath: "/studio",
 
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
