@@ -32,7 +32,7 @@ export default async function PricingPage() {
         </div>
       </div>
 
-      <PricingSection plans={plans} />
+      <PricingSection plans={plans} showHeader={false} />
       {testimonials.length > 0 && (
         <TestimonialsSection testimonials={testimonials} />
       )}

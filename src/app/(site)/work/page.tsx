@@ -28,7 +28,7 @@ export default async function WorkPage() {
         </div>
       </div>
 
-      <PortfolioGrid items={items} showAll />
+      <PortfolioGrid items={items} showAll showHeader={false} />
     </>
   );
 }

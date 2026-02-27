@@ -27,7 +27,7 @@ export default async function BlogPage() {
         </div>
       </div>
 
-      <BlogGrid posts={posts} showAll />
+      <BlogGrid posts={posts} showAll showHeader={false} />
     </>
   );
 }

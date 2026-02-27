@@ -7,6 +7,7 @@ import type { Post } from "@/types/sanity";
 interface BlogGridProps {
   posts: Post[];
   showAll?: boolean;
+  showHeader?: boolean;
 }
 
 function formatDate(dateString?: string): string {
@@ -18,22 +19,24 @@ function formatDate(dateString?: string): string {
   }).format(new Date(dateString));
 }
 
-export function BlogGrid({ posts, showAll = false }: BlogGridProps) {
+export function BlogGrid({ posts, showAll = false, showHeader = true }: BlogGridProps) {
   if (posts.length === 0) return null;
 
   return (
     <SectionWrapper className="bg-neutral-50">
-      <div className="mb-14">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
-          Insights
-        </p>
-        <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">
-          From the blog
-        </h2>
-        <p className="mt-4 max-w-2xl text-lg text-neutral-500">
-          Practical advice on digital transformation for small businesses.
-        </p>
-      </div>
+      {showHeader && (
+        <div className="mb-14">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
+            Insights
+          </p>
+          <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">
+            From the blog
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg text-neutral-500">
+            Practical advice on digital transformation for small businesses.
+          </p>
+        </div>
+      )}
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (

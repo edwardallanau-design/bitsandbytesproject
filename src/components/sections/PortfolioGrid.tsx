@@ -7,24 +7,27 @@ import type { PortfolioItem } from "@/types/sanity";
 interface PortfolioGridProps {
   items: PortfolioItem[];
   showAll?: boolean;
+  showHeader?: boolean;
 }
 
-export function PortfolioGrid({ items, showAll = false }: PortfolioGridProps) {
+export function PortfolioGrid({ items, showAll = false, showHeader = true }: PortfolioGridProps) {
   if (items.length === 0) return null;
 
   return (
     <SectionWrapper className="bg-neutral-950">
-      <div className="mb-14">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-600">
-          Selected work
-        </p>
-        <h2 className="text-3xl font-bold text-white sm:text-4xl">
-          Our work
-        </h2>
-        <p className="mt-4 max-w-2xl text-lg text-neutral-400">
-          Projects that made a real difference for our clients.
-        </p>
-      </div>
+      {showHeader && (
+        <div className="mb-14">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-600">
+            Selected work
+          </p>
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+            Our work
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg text-neutral-400">
+            Projects that made a real difference for our clients.
+          </p>
+        </div>
+      )}
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (

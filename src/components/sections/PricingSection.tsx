@@ -7,24 +7,27 @@ import type { PricingPlan } from "@/types/sanity";
 
 interface PricingSectionProps {
   plans: PricingPlan[];
+  showHeader?: boolean;
 }
 
-export function PricingSection({ plans }: PricingSectionProps) {
+export function PricingSection({ plans, showHeader = true }: PricingSectionProps) {
   if (plans.length === 0) return null;
 
   return (
     <SectionWrapper className="bg-white">
-      <div className="mb-14">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
-          Pricing
-        </p>
-        <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">
-          Transparent pricing
-        </h2>
-        <p className="mt-4 max-w-2xl text-lg text-neutral-500">
-          No hidden fees. Pick the plan that fits your business.
-        </p>
-      </div>
+      {showHeader && (
+        <div className="mb-14">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
+            Pricing
+          </p>
+          <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">
+            Transparent pricing
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg text-neutral-500">
+            No hidden fees. Pick the plan that fits your business.
+          </p>
+        </div>
+      )}
 
       <div
         className={cn(
