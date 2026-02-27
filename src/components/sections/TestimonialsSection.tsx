@@ -12,7 +12,7 @@ function StarRating({ rating }: { rating: number }) {
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
-          className={`h-4 w-4 ${i < rating ? "text-yellow-400" : "text-neutral-200"}`}
+          className={`h-4 w-4 ${i < rating ? "text-neutral-300" : "text-neutral-700"}`}
           fill="currentColor"
           viewBox="0 0 20 20"
           aria-hidden="true"
@@ -30,9 +30,12 @@ export function TestimonialsSection({
   if (testimonials.length === 0) return null;
 
   return (
-    <SectionWrapper className="bg-neutral-50">
-      <div className="mb-12 text-center">
-        <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">
+    <SectionWrapper className="bg-neutral-950">
+      <div className="mb-14 text-center">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-600">
+          Client stories
+        </p>
+        <h2 className="text-3xl font-bold text-white sm:text-4xl">
           What our clients say
         </h2>
       </div>
@@ -41,26 +44,26 @@ export function TestimonialsSection({
         {testimonials.map((testimonial) => (
           <figure
             key={testimonial._id}
-            className="flex flex-col rounded-xl border border-neutral-200 bg-white p-6"
+            className="flex flex-col rounded-xl bg-neutral-900 p-7 ring-1 ring-neutral-800"
           >
             {testimonial.rating && (
               <StarRating rating={testimonial.rating} />
             )}
-            <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-neutral-700">
+            <blockquote className="mt-5 flex-1 text-sm leading-relaxed text-neutral-300">
               &ldquo;{testimonial.quote}&rdquo;
             </blockquote>
-            <figcaption className="mt-6 flex items-center gap-3">
+            <figcaption className="mt-7 flex items-center gap-3 border-t border-neutral-800 pt-5">
               {testimonial.avatar && (
                 <SanityImage
                   image={testimonial.avatar}
                   width={48}
                   height={48}
                   fallbackAlt={testimonial.authorName}
-                  className="h-12 w-12 rounded-full object-cover"
+                  className="h-10 w-10 rounded-full object-cover ring-1 ring-neutral-700"
                 />
               )}
               <div>
-                <p className="text-sm font-semibold text-neutral-900">
+                <p className="text-sm font-semibold text-white">
                   {testimonial.authorName}
                 </p>
                 {(testimonial.role || testimonial.company) && (

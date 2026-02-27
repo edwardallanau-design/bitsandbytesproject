@@ -3,7 +3,6 @@
 
 /**
  * shadcn/ui CSS variables — exposed to Tailwind as utility classes via @theme inline.
- * The actual values are set in :root below, mapped to the brand palette.
  */
 @theme inline {
   --color-background: var(--background);
@@ -29,49 +28,47 @@
 }
 
 /**
- * Brand theme tokens — edit these per client.
- * All values are in @theme so Tailwind generates bg-brand-*, text-brand-* utilities.
+ * Greyscale brand palette — black to white.
  */
 @theme {
-  /* Brand palette — adjust hue/chroma per client */
-  --color-brand-50:  oklch(97% 0.02 250);
-  --color-brand-100: oklch(93% 0.05 250);
-  --color-brand-200: oklch(87% 0.09 250);
-  --color-brand-300: oklch(78% 0.13 250);
-  --color-brand-400: oklch(67% 0.17 250);
-  --color-brand-500: oklch(55% 0.20 250);
-  --color-brand-600: oklch(46% 0.18 250);
-  --color-brand-700: oklch(38% 0.15 250);
-  --color-brand-800: oklch(30% 0.11 250);
-  --color-brand-900: oklch(22% 0.08 250);
-  --color-brand-950: oklch(14% 0.05 250);
+  /* Greyscale brand palette */
+  --color-brand-50:  oklch(97% 0 0);
+  --color-brand-100: oklch(93% 0 0);
+  --color-brand-200: oklch(87% 0 0);
+  --color-brand-300: oklch(78% 0 0);
+  --color-brand-400: oklch(65% 0 0);
+  --color-brand-500: oklch(45% 0 0);
+  --color-brand-600: oklch(32% 0 0);
+  --color-brand-700: oklch(22% 0 0);
+  --color-brand-800: oklch(15% 0 0);
+  --color-brand-900: oklch(10% 0 0);
+  --color-brand-950: oklch(6%  0 0);
 
   /* Typography */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  /* Custom spacing token — use as py-section, etc. */
+  /* Custom spacing token */
   --spacing-section: 5rem;
 }
 
 @layer base {
   :root {
-    /* Semantic tokens — edit --primary/* to change the brand accent across all shadcn components */
-    --background:            oklch(100%   0     0);
-    --foreground:            oklch(22%    0     0);
-    --card:                  oklch(100%   0     0);
-    --card-foreground:       oklch(22%    0     0);
-    --primary:               oklch(55%    0.20  250); /* brand-500 */
-    --primary-foreground:    oklch(100%   0     0);   /* white */
-    --secondary:             oklch(93%    0.05  250); /* brand-100 */
-    --secondary-foreground:  oklch(38%    0.15  250); /* brand-700 */
-    --muted:                 oklch(97%    0     0);
-    --muted-foreground:      oklch(55%    0     0);
-    --accent:                oklch(97%    0     0);
-    --accent-foreground:     oklch(22%    0     0);
-    --destructive:           oklch(58%    0.245 27);
-    --border:                oklch(91%    0     0);
-    --input:                 oklch(91%    0     0);
-    --ring:                  oklch(55%    0.20  250); /* brand-500 */
+    --background:            oklch(100%  0 0);
+    --foreground:            oklch(10%   0 0);
+    --card:                  oklch(100%  0 0);
+    --card-foreground:       oklch(10%   0 0);
+    --primary:               oklch(10%   0 0);   /* near-black */
+    --primary-foreground:    oklch(98%   0 0);   /* near-white */
+    --secondary:             oklch(93%   0 0);   /* light grey */
+    --secondary-foreground:  oklch(22%   0 0);   /* dark grey */
+    --muted:                 oklch(96%   0 0);
+    --muted-foreground:      oklch(50%   0 0);
+    --accent:                oklch(96%   0 0);
+    --accent-foreground:     oklch(10%   0 0);
+    --destructive:           oklch(58%   0.245 27);
+    --border:                oklch(90%   0 0);
+    --input:                 oklch(90%   0 0);
+    --ring:                  oklch(45%   0 0);
     --radius:                0.5rem;
   }
 
