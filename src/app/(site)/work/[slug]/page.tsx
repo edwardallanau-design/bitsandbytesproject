@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { Badge } from "@/components/ui/Badge";
 import { PortableText } from "@/components/ui/PortableText";
 import { SanityImage } from "@/components/ui/SanityImage";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
@@ -41,60 +40,83 @@ export default async function WorkItemPage({
   if (!item) notFound();
 
   return (
-    <SectionWrapper>
-      <div className="mb-4">
-        <Link
-          href="/work"
-          className="text-sm text-brand-600 hover:text-brand-700 hover:underline"
-        >
-          ← Back to Work
-        </Link>
-      </div>
+    <>
+      {/* Project hero */}
+      <div className="bg-neutral-950 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <Link
+            href="/work"
+            className="mb-8 inline-flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-white"
+          >
+            ← Back to Work
+          </Link>
 
-      <div className="mx-auto max-w-4xl">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-neutral-900">{item.title}</h1>
-          <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-neutral-500">
+          <h1 className="mt-6 text-4xl font-bold text-white sm:text-5xl">
+            {item.title}
+          </h1>
+
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-neutral-500">
             {item.clientName && <span>{item.clientName}</span>}
-            {item.year && <span>{item.year}</span>}
+            {item.year && (
+              <>
+                <span className="h-1 w-1 rounded-full bg-neutral-700" />
+                <span>{item.year}</span>
+              </>
+            )}
             {item.liveUrl && (
-              <a
-                href={item.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-600 hover:underline"
-              >
-                Visit site →
-              </a>
+              <>
+                <span className="h-1 w-1 rounded-full bg-neutral-700" />
+                <a
+                  href={item.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-300 transition-colors hover:text-white hover:underline"
+                >
+                  Visit site →
+                </a>
+              </>
             )}
           </div>
+
           {item.tags && item.tags.length > 0 && (
-            <div className="mt-3 flex flex-wrap gap-1.5">
+            <div className="mt-5 flex flex-wrap gap-2">
               {item.tags.map((tag) => (
-                <Badge key={tag}>{tag}</Badge>
+                <span
+                  key={tag}
+                  className="rounded-full border border-neutral-700 px-3 py-0.5 text-xs font-medium text-neutral-400"
+                >
+                  {tag}
+                </span>
               ))}
             </div>
           )}
-        </header>
-
-        {item.coverImage && (
-          <div className="mb-8 overflow-hidden rounded-2xl">
-            <SanityImage
-              image={item.coverImage}
-              width={1200}
-              height={675}
-              className="w-full object-cover"
-              priority
-            />
-          </div>
-        )}
-
-        {item.description && item.description.length > 0 ? (
-          <PortableText value={item.description} />
-        ) : item.shortDescription ? (
-          <p className="text-lg text-neutral-700">{item.shortDescription}</p>
-        ) : null}
+        </div>
       </div>
-    </SectionWrapper>
+
+      {/* Project content */}
+      <SectionWrapper className="bg-white">
+        <div className="mx-auto max-w-4xl">
+          {item.coverImage && (
+            <div className="mb-12 overflow-hidden rounded-2xl">
+              <SanityImage
+                image={item.coverImage}
+                width={1200}
+                height={675}
+                className="w-full object-cover"
+                priority
+              />
+            </div>
+          )}
+
+          {item.description && item.description.length > 0 ? (
+            <PortableText value={item.description} />
+          ) : item.shortDescription ? (
+            <p className="text-lg leading-relaxed text-neutral-600">
+              {item.shortDescription}
+            </p>
+          ) : null}
+        </div>
+      </SectionWrapper>
+    </>
   );
 }

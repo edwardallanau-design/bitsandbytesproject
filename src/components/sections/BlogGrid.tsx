@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/Badge";
 import { SanityImage } from "@/components/ui/SanityImage";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import type { Post } from "@/types/sanity";
@@ -24,11 +23,14 @@ export function BlogGrid({ posts, showAll = false }: BlogGridProps) {
 
   return (
     <SectionWrapper className="bg-neutral-50">
-      <div className="mb-12 text-center">
-        <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">
+      <div className="mb-14">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
           Insights
+        </p>
+        <h2 className="text-3xl font-bold text-neutral-900 sm:text-4xl">
+          From the blog
         </h2>
-        <p className="mt-4 text-lg text-neutral-600">
+        <p className="mt-4 max-w-2xl text-lg text-neutral-500">
           Practical advice on digital transformation for small businesses.
         </p>
       </div>
@@ -38,44 +40,47 @@ export function BlogGrid({ posts, showAll = false }: BlogGridProps) {
           <Link
             key={post._id}
             href={`/blog/${post.slug}`}
-            className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white transition-shadow hover:shadow-lg"
+            className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white transition-all hover:border-neutral-300 hover:shadow-md"
           >
             {post.coverImage && (
-              <div className="aspect-video overflow-hidden">
+              <div className="aspect-video overflow-hidden bg-neutral-100">
                 <SanityImage
                   image={post.coverImage}
                   width={600}
                   height={338}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             )}
-            <div className="flex flex-1 flex-col gap-3 p-5">
-              {post.publishedAt && (
-                <time
-                  dateTime={post.publishedAt}
-                  className="text-xs text-neutral-400"
-                >
-                  {formatDate(post.publishedAt)}
-                </time>
-              )}
-              <h3 className="font-semibold text-neutral-900 group-hover:text-brand-600 transition-colors line-clamp-2">
+            <div className="flex flex-1 flex-col gap-3 p-6">
+              <div className="flex items-center justify-between">
+                {post.publishedAt && (
+                  <time
+                    dateTime={post.publishedAt}
+                    className="text-xs text-neutral-400"
+                  >
+                    {formatDate(post.publishedAt)}
+                  </time>
+                )}
+                {post.categories && post.categories.length > 0 && (
+                  <span className="rounded-full bg-neutral-100 px-2.5 py-0.5 text-xs font-medium text-neutral-600">
+                    {post.categories[0]}
+                  </span>
+                )}
+              </div>
+              <h3 className="font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-neutral-600 line-clamp-2">
                 {post.title}
               </h3>
               {post.excerpt && (
-                <p className="text-sm text-neutral-600 line-clamp-3">
+                <p className="text-sm leading-relaxed text-neutral-500 line-clamp-3">
                   {post.excerpt}
                 </p>
               )}
-              {post.categories && post.categories.length > 0 && (
-                <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
-                  {post.categories.map((cat) => (
-                    <Badge key={cat} variant="brand">
-                      {cat}
-                    </Badge>
-                  ))}
-                </div>
-              )}
+              <div className="mt-auto pt-2">
+                <span className="text-xs font-medium text-neutral-400 transition-colors group-hover:text-neutral-700">
+                  Read article →
+                </span>
+              </div>
             </div>
           </Link>
         ))}
@@ -85,7 +90,7 @@ export function BlogGrid({ posts, showAll = false }: BlogGridProps) {
         <div className="mt-10 text-center">
           <Link
             href="/blog"
-            className="text-sm font-medium text-brand-600 hover:text-brand-700 hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-600 underline-offset-4 hover:text-neutral-900 hover:underline"
           >
             Read all articles →
           </Link>
