@@ -30,7 +30,7 @@ export function ServicesSection({
         {services.map((service) => (
           <Link key={service._id} href={`/services#${service.slug}`}>
             <Card className="h-full transition-shadow duration-200 hover:shadow-lg">
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 p-4">
                 <CardTitle>{service.title}</CardTitle>
                 {service.shortDescription && (
                   <CardDescription>{service.shortDescription}</CardDescription>
