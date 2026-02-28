@@ -1,9 +1,8 @@
 import Link from "next/link";
 
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { cn } from "@/lib/utils";
-import { formatPrice } from "@/lib/utils";
-import type { PricingPlan } from "@/types/sanity";
+import { cn, formatPrice } from "@/lib/utils";
+import type { PricingPlan } from "@/types";
 
 interface PricingSectionProps {
   plans: PricingPlan[];
@@ -41,7 +40,7 @@ export function PricingSection({ plans, showHeader = true }: PricingSectionProps
       >
         {plans.map((plan) => (
           <div
-            key={plan._id}
+            key={plan.id}
             className={cn(
               "relative flex flex-col rounded-2xl p-8",
               plan.isPopular
@@ -71,7 +70,7 @@ export function PricingSection({ plans, showHeader = true }: PricingSectionProps
                     plan.isPopular ? "text-white" : "text-neutral-900"
                   )}
                 >
-                  {formatPrice(plan.price, plan.priceLabel, plan.billingPeriod)}
+                  {formatPrice(plan.price ?? undefined, plan.priceLabel ?? undefined, plan.billingPeriod ?? undefined)}
                 </span>
                 {plan.billingPeriod && !plan.priceLabel && (
                   <span

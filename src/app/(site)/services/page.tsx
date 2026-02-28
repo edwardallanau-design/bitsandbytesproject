@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { getAllServices } from "@/lib/sanity/queries/services";
+import { getAllServices } from "@/lib/payload/queries";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -33,13 +33,13 @@ export default async function ServicesPage() {
       <SectionWrapper className="bg-white">
         {services.length === 0 ? (
           <p className="text-neutral-500">
-            No services found. Add some in the Sanity Studio.
+            No services found. Add some in the Payload admin.
           </p>
         ) : (
           <div className="grid gap-px bg-neutral-200 lg:grid-cols-2">
             {services.map((service, index) => (
               <div
-                key={service._id}
+                key={service.id}
                 id={service.slug}
                 className="flex flex-col gap-4 bg-white p-10 scroll-mt-20"
               >

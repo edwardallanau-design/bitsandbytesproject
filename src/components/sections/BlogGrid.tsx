@@ -1,8 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import { SanityImage } from "@/components/ui/SanityImage";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import type { Post } from "@/types/sanity";
+import type { Post } from "@/types";
 
 interface BlogGridProps {
   posts: Post[];
@@ -10,7 +10,7 @@ interface BlogGridProps {
   showHeader?: boolean;
 }
 
-function formatDate(dateString?: string): string {
+function formatDate(dateString?: string | null): string {
   if (!dateString) return "";
   return new Intl.DateTimeFormat("en-US", {
     year: "numeric",
@@ -41,14 +41,15 @@ export function BlogGrid({ posts, showAll = false, showHeader = true }: BlogGrid
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <Link
-            key={post._id}
+            key={post.id}
             href={`/blog/${post.slug}`}
             className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white transition-all hover:border-neutral-300 hover:shadow-md"
           >
-            {post.coverImage && (
+            {post.coverImage?.url && (
               <div className="aspect-video overflow-hidden bg-neutral-100">
-                <SanityImage
-                  image={post.coverImage}
+                <Image
+                  src={post.coverImage.url}
+                  alt={post.coverImage.alt}
                   width={600}
                   height={338}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

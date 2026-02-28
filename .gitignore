@@ -37,8 +37,8 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# Sanity Studio build output
-.sanity/
+# Docker local data (PostgreSQL volume)
+.data/
 
 # vercel
 .vercel

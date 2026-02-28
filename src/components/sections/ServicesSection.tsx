@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import type { Service } from "@/types/sanity";
+import type { Service } from "@/types";
 
 interface ServicesSectionProps {
   services: Service[];
@@ -32,7 +32,7 @@ export function ServicesSection({
       <div className="grid gap-px bg-neutral-200 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service, index) => (
           <Link
-            key={service._id}
+            key={service.id}
             href={`/services#${service.slug}`}
             className="group relative flex flex-col gap-4 bg-white p-8 transition-colors hover:bg-neutral-50"
           >

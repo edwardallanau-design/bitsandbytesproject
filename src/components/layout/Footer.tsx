@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { SiteSettings } from "@/types/sanity";
+import type { SiteSettings } from "@/types";
 
 const FOOTER_NAV = [
   { href: "/services", label: "Services" },
@@ -92,7 +92,7 @@ export function Footer({ settings }: FooterProps) {
             © {currentYear} {settings?.siteName ?? "Agency"}. All rights reserved.
           </p>
           <p className="text-xs text-neutral-700">
-            Built with Next.js & Sanity
+            Built with Next.js & Payload
           </p>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
-import { getAllPortfolioItems } from "@/lib/sanity/queries/portfolio";
+import { getAllPortfolioItems } from "@/lib/payload/queries";
 
 export const metadata: Metadata = {
   title: "Work",

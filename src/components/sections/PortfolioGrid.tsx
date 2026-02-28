@@ -1,8 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import { SanityImage } from "@/components/ui/SanityImage";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import type { PortfolioItem } from "@/types/sanity";
+import type { PortfolioItem } from "@/types";
 
 interface PortfolioGridProps {
   items: PortfolioItem[];
@@ -32,14 +32,15 @@ export function PortfolioGrid({ items, showAll = false, showHeader = true }: Por
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
           <Link
-            key={item._id}
+            key={item.id}
             href={`/work/${item.slug}`}
             className="group flex flex-col overflow-hidden rounded-xl bg-neutral-900 ring-1 ring-neutral-800 transition-all hover:ring-neutral-600"
           >
-            {item.coverImage && (
+            {item.coverImage?.url && (
               <div className="aspect-video overflow-hidden">
-                <SanityImage
-                  image={item.coverImage}
+                <Image
+                  src={item.coverImage.url}
+                  alt={item.coverImage.alt}
                   width={600}
                   height={338}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

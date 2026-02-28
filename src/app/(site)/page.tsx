@@ -5,11 +5,13 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { getHomePage } from "@/lib/sanity/queries/home";
-import { getFeaturedPosts } from "@/lib/sanity/queries/blog";
-import { getFeaturedPortfolioItems } from "@/lib/sanity/queries/portfolio";
-import { getAllServices } from "@/lib/sanity/queries/services";
-import { getFeaturedTestimonials } from "@/lib/sanity/queries/pricing";
+import {
+  getHomePage,
+  getFeaturedPosts,
+  getFeaturedPortfolioItems,
+  getAllServices,
+  getFeaturedTestimonials,
+} from "@/lib/payload/queries";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -28,7 +30,7 @@ export default async function HomePage() {
   if (!homePage) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center text-neutral-500">
-        <p>Set up your home page in the Sanity Studio.</p>
+        <p>Set up your home page in the Payload admin.</p>
       </div>
     );
   }

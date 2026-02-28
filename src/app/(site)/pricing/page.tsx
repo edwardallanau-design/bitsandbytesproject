@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { PricingSection } from "@/components/sections/PricingSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { getAllPricingPlans, getAllTestimonials } from "@/lib/sanity/queries/pricing";
+import { getAllPricingPlans, getAllTestimonials } from "@/lib/payload/queries";
 
 export const metadata: Metadata = {
   title: "Pricing",

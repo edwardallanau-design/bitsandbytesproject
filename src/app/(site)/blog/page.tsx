@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { BlogGrid } from "@/components/sections/BlogGrid";
-import { getAllPosts } from "@/lib/sanity/queries/blog";
+import { getAllPosts } from "@/lib/payload/queries";
 
 export const metadata: Metadata = {
   title: "Blog",

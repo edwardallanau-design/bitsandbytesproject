@@ -1,8 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import { SanityImage } from "@/components/ui/SanityImage";
 import { cn } from "@/lib/utils";
-import type { HomePage } from "@/types/sanity";
+import type { HomePage } from "@/types";
 
 interface HeroSectionProps {
   data: HomePage;
@@ -117,7 +117,7 @@ export function HeroSection({ data }: HeroSectionProps) {
           </div>
 
           {/* Image — split variants */}
-          {heroImage && isSplit && (
+          {heroImage?.url && isSplit && (
             <div
               className={cn(
                 "lg:w-1/2",
@@ -125,8 +125,9 @@ export function HeroSection({ data }: HeroSectionProps) {
               )}
             >
               <div className="overflow-hidden rounded-2xl ring-1 ring-neutral-800">
-                <SanityImage
-                  image={heroImage}
+                <Image
+                  src={heroImage.url}
+                  alt={heroImage.alt}
                   width={720}
                   height={540}
                   className="h-full w-full object-cover"
@@ -137,11 +138,12 @@ export function HeroSection({ data }: HeroSectionProps) {
           )}
 
           {/* Image — centered variant */}
-          {heroImage && !isSplit && (
+          {heroImage?.url && !isSplit && (
             <div className="w-full max-w-4xl">
               <div className="overflow-hidden rounded-2xl ring-1 ring-neutral-800">
-                <SanityImage
-                  image={heroImage}
+                <Image
+                  src={heroImage.url}
+                  alt={heroImage.alt}
                   width={1200}
                   height={600}
                   className="h-full w-full object-cover"

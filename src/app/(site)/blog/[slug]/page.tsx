@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { PortableText } from "@/components/ui/PortableText";
-import { SanityImage } from "@/components/ui/SanityImage";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { getAllPostSlugs, getPostBySlug } from "@/lib/sanity/queries/blog";
+import { getAllPostSlugs, getPostBySlug } from "@/lib/payload/queries";
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();
@@ -26,7 +26,7 @@ export async function generateMetadata({
   };
 }
 
-function formatDate(dateString?: string): string {
+function formatDate(dateString?: string | null): string {
   if (!dateString) return "";
   return new Intl.DateTimeFormat("en-US", {
     year: "numeric",
@@ -99,10 +99,11 @@ export default async function BlogPostPage({
       {/* Article body */}
       <SectionWrapper className="bg-white">
         <div className="mx-auto max-w-3xl">
-          {post.coverImage && (
+          {post.coverImage?.url && (
             <div className="mb-12 overflow-hidden rounded-2xl">
-              <SanityImage
-                image={post.coverImage}
+              <Image
+                src={post.coverImage.url}
+                alt={post.coverImage.alt}
                 width={1200}
                 height={630}
                 className="w-full object-cover"
@@ -111,8 +112,10 @@ export default async function BlogPostPage({
             </div>
           )}
 
-          {post.body && post.body.length > 0 && (
-            <PortableText value={post.body} />
+          {post.body && (
+            <div className="prose prose-neutral max-w-none">
+              <RichText data={post.body} />
+            </div>
           )}
         </div>
       </SectionWrapper>

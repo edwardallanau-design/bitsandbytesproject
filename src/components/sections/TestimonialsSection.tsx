@@ -1,6 +1,7 @@
-import { SanityImage } from "@/components/ui/SanityImage";
+import Image from "next/image";
+
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import type { Testimonial } from "@/types/sanity";
+import type { Testimonial } from "@/types";
 
 interface TestimonialsSectionProps {
   testimonials: Testimonial[];
@@ -43,7 +44,7 @@ export function TestimonialsSection({
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((testimonial) => (
           <figure
-            key={testimonial._id}
+            key={testimonial.id}
             className="flex flex-col rounded-xl bg-neutral-900 p-7 ring-1 ring-neutral-800"
           >
             {testimonial.rating && (
@@ -53,12 +54,12 @@ export function TestimonialsSection({
               &ldquo;{testimonial.quote}&rdquo;
             </blockquote>
             <figcaption className="mt-7 flex items-center gap-3 border-t border-neutral-800 pt-5">
-              {testimonial.avatar && (
-                <SanityImage
-                  image={testimonial.avatar}
+              {testimonial.avatar?.url && (
+                <Image
+                  src={testimonial.avatar.url}
+                  alt={testimonial.avatar.alt || testimonial.authorName}
                   width={48}
                   height={48}
-                  fallbackAlt={testimonial.authorName}
                   className="h-10 w-10 rounded-full object-cover ring-1 ring-neutral-700"
                 />
               )}

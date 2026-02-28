@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { PortableText } from "@/components/ui/PortableText";
-import { SanityImage } from "@/components/ui/SanityImage";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import {
   getAllPortfolioSlugs,
   getPortfolioItemBySlug,
-} from "@/lib/sanity/queries/portfolio";
+} from "@/lib/payload/queries";
 
 export async function generateStaticParams() {
   const slugs = await getAllPortfolioSlugs();
@@ -96,10 +96,11 @@ export default async function WorkItemPage({
       {/* Project content */}
       <SectionWrapper className="bg-white">
         <div className="mx-auto max-w-4xl">
-          {item.coverImage && (
+          {item.coverImage?.url && (
             <div className="mb-12 overflow-hidden rounded-2xl">
-              <SanityImage
-                image={item.coverImage}
+              <Image
+                src={item.coverImage.url}
+                alt={item.coverImage.alt}
                 width={1200}
                 height={675}
                 className="w-full object-cover"
@@ -108,8 +109,10 @@ export default async function WorkItemPage({
             </div>
           )}
 
-          {item.description && item.description.length > 0 ? (
-            <PortableText value={item.description} />
+          {item.description ? (
+            <div className="prose prose-neutral max-w-none">
+              <RichText data={item.description} />
+            </div>
           ) : item.shortDescription ? (
             <p className="text-lg leading-relaxed text-neutral-600">
               {item.shortDescription}

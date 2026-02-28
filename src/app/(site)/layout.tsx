@@ -1,4 +1,4 @@
-import { getSiteSettings } from "@/lib/sanity/queries/site";
+import { getSiteSettings } from "@/lib/payload/queries";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
